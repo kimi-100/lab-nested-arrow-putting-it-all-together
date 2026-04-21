@@ -8,6 +8,8 @@ const createLoginTracker = function (userInfo) {
   let attemptCounter = 0;
   //INNER FUNCTION WITH PASSWORD ATTEMPT LOGIC
   const passwordAttemptLogic = (passwordAttempt) => {
+    attemptCounter++;
+
     if (attemptCounter >3) {
       let returnMessage = `Account locked due to too many failed login attempts`;
       return returnMessage;
@@ -17,7 +19,6 @@ const createLoginTracker = function (userInfo) {
       return returnMessage;
 
     } else {
-      attemptCounter++;
       let returnMessage = `Attempt ${attemptCounter}: Login failed`;
       return returnMessage;
     }
@@ -29,7 +30,7 @@ const createLoginTracker = function (userInfo) {
 const login = createLoginTracker(userInfo);
 console.log(login("wrongAttemptOne"));
 console.log(login("wrongAttemptTwo"));
-// console.log(login("wrongAttemptThree"));
+console.log(login("wrongAttemptThree"));
 console.log(login("password123"));
 
 module.exports = {
